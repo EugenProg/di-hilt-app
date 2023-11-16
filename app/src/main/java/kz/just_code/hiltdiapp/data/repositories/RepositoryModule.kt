@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kz.just_code.koindiapp.data.network.WeatherApi
+import kz.just_code.hiltdiapp.data.network.WeatherApi
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)

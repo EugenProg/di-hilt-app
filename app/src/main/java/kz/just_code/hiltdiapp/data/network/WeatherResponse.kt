@@ -1,4 +1,4 @@
-package kz.just_code.koindiapp.data.network
+package kz.just_code.hiltdiapp.data.network
 
 import com.google.gson.annotations.SerializedName
 

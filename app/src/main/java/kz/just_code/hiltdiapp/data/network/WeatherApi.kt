@@ -1,4 +1,4 @@
-package kz.just_code.koindiapp.data.network
+package kz.just_code.hiltdiapp.data.network
 
 import retrofit2.Response
 import retrofit2.http.GET

@@ -1,12 +1,11 @@
 package kz.just_code.hiltdiapp.data.repositories
 
 import com.google.gson.Gson
-import kz.just_code.koindiapp.data.network.WeatherApi
-import kz.just_code.koindiapp.data.network.WeatherApiError
-import kz.just_code.koindiapp.data.network.WeatherResponse
+import kz.just_code.hiltdiapp.data.network.WeatherApi
+import kz.just_code.hiltdiapp.data.network.WeatherApiError
+import kz.just_code.hiltdiapp.data.network.WeatherResponse
 import okhttp3.ResponseBody
 import javax.inject.Inject
-import javax.inject.Singleton
 
 interface WeatherRepository {
     suspend fun getCurrentWeather(city: String): WeatherResponse?

@@ -1,6 +1,6 @@
 package kz.just_code.hiltdiapp.data.useCases
 
-import kz.just_code.koindiapp.data.network.WeatherResponse
+import kz.just_code.hiltdiapp.data.network.WeatherResponse
 import kz.just_code.hiltdiapp.data.repositories.WeatherRepository
 
 interface GetCurrentWeatherUseCase {
