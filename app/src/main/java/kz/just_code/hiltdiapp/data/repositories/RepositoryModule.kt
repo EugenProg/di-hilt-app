@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kz.just_code.hiltdiapp.data.db.ToDoDao
 import kz.just_code.hiltdiapp.data.network.WeatherApi
 import javax.inject.Singleton
 
@@ -14,4 +15,8 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideWeatherRepository(api: WeatherApi): WeatherRepository = WeatherRepositoryImpl(api)
+
+    @Singleton
+    @Provides
+    fun provideTodoRepository(dao: ToDoDao): TodoRepository = TodoRepositoryImpl(dao)
 }
