@@ -3,6 +3,8 @@ package kz.just_code.hiltdiapp.data.repositories
 import kotlinx.coroutines.flow.Flow
 import kz.just_code.hiltdiapp.data.db.ToDoDao
 import kz.just_code.hiltdiapp.data.db.TodoEntity
+import kz.just_code.hiltdiapp.todo.toSaveFormat
+import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
 
@@ -13,18 +15,21 @@ interface TodoRepository {
     suspend fun getAll(): List<TodoEntity>
     suspend fun getAllByDate(date: String): List<TodoEntity>
     suspend fun getById(id: Int): TodoEntity
-    var todoFlow: Flow<TodoEntity>
+    var todoFlow: Flow<List<TodoEntity>>
 }
 
 class TodoRepositoryImpl @Inject constructor(
     private val dao: ToDoDao
 ): TodoRepository {
     override suspend fun saveTodo(todo: String) {
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DAY_OF_YEAR, -1)
         dao.save(
             TodoEntity(
                 0,
                 todo,
-                Date().toString()
+                Date().toSaveFormat()
+               // calendar.time.toSaveFormat()
             )
         )
     }
@@ -49,5 +54,5 @@ class TodoRepositoryImpl @Inject constructor(
         return dao.getById(id)
     }
 
-    override var todoFlow: Flow<TodoEntity> = dao.getAllFlow()
+    override var todoFlow: Flow<List<TodoEntity>> = dao.getAllFlow()
 }

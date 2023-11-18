@@ -8,6 +8,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kz.just_code.hiltdiapp.data.db.CarDao
 import kz.just_code.hiltdiapp.data.db.ToDoDao
 import kz.just_code.hiltdiapp.data.db.ToDoDatabase
 import javax.inject.Singleton
@@ -21,9 +22,13 @@ class DbModule {
     fun getDatabase(@ApplicationContext context: Context): ToDoDatabase {
         return Room
             .databaseBuilder(context, ToDoDatabase::class.java, "To do database")
+            .fallbackToDestructiveMigration()
             .build()
     }
 
     @Provides
     fun getTodoDao(db: ToDoDatabase): ToDoDao = db.toDoDao()
+
+    @Provides
+    fun getCarDao(db: ToDoDatabase): CarDao = db.carDao()
 }
