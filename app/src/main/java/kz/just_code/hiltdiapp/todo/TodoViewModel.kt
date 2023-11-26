@@ -6,12 +6,15 @@ import androidx.lifecycle.asLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kz.just_code.hiltdiapp.data.BaseViewModel
 import kz.just_code.hiltdiapp.data.db.TodoEntity
+import kz.just_code.hiltdiapp.data.preferences.Preferences
+import kz.just_code.hiltdiapp.data.preferences.SharedPreferencesUtils
 import kz.just_code.hiltdiapp.data.repositories.TodoRepository
 import javax.inject.Inject
 
 @HiltViewModel
 class TodoViewModel @Inject constructor(
-    private val repo: TodoRepository
+    private val repo: TodoRepository,
+    private val preferencesUtils: SharedPreferencesUtils
 ) : BaseViewModel() {
 
     val todoListLiveData: LiveData<List<TodoEntity>> = repo.todoFlow.asLiveData()
@@ -23,6 +26,7 @@ class TodoViewModel @Inject constructor(
     val saveSuccessLieData: LiveData<Unit> = _saveSuccessLieData
 
     fun saveTodo(todo: String) {
+        preferencesUtils.saveString(Preferences.NAME, todo)
         launch(
             request = {
                 repo.saveTodo(todo)
